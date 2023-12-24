@@ -17,30 +17,30 @@ import com.proj.email.bean.Info;
 import com.proj.email.service.UserService;
 
 @RestController
-@RequestMapping("/users")
+//@RequestMapping("/emailapp")
 public class Controller {
 
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping
+	@GetMapping("/emailapp/getusers")
     public List<Info> getAllUsers() {
-        return userService.getAllUsers();
+        return userService.getActiveUsers();
     }
 	
-	@PostMapping
-	public Info createUser(@RequestParam String id, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String department, @RequestParam String altEmail) {
+	@PostMapping("/emailapp/createuser")
+	public Info createUser(@RequestParam Long id, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String department, @RequestParam String altEmail) {
 	    return userService.createUser(id, firstName, lastName, department, altEmail);
 	}
 
-	@PutMapping("/user/{id}")
-	public Info updateUser(@PathVariable String id, @RequestParam(required = false) String newPassword,
+	@PutMapping("/emailapp/updateuser/{id}")
+	public Info updateUser(@PathVariable Long id, @RequestParam(required = false) String newPassword,
 	                           @RequestParam(required = false) String altEmail, @RequestParam(required = false) Integer inboxCapacity) {
 		return userService.updateUser(id, newPassword, altEmail, inboxCapacity);
     }
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/users/{id}")
-	public void deleteSubject(@PathVariable String id) {
+	public void deleteSubject(@PathVariable Long id) {
 		userService.deleteSubject(id);
 	}
 }

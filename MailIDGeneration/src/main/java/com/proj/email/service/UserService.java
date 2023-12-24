@@ -6,8 +6,8 @@ import com.proj.email.bean.Info;
 
 public interface UserService {
 	
-	Info createUser(String id, String firstName, String lastName, String department, String altEmail);
-	Info updateUser(String id, String newPassword, String altEmail, int inboxCapacity);
-	void deleteSubject(String id);
-	List<Info> getAllUsers();
+	Info createUser(Long id, String firstName, String lastName, String department, String altEmail);
+	Info updateUser(Long id, String newPassword, String altEmail, int inboxCapacity);
+	void deleteSubject(Long id);
+	List<Info> getActiveUsers();
 }
